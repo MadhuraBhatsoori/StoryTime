@@ -4,3 +4,11 @@ Story Time is an innovative storytelling app that brings children’s imaginatio
 The Gemini API powers Story Time by crafting tailored narratives based on user input. It generates age-appropriate stories, carefully avoiding elements of violence, politics, religion, and other unsuitable topics. Additionally, it incorporates a wide range of vocabulary suited to the child’s age, aiding in language learning. As children grow, the app introduces more complex words and sentence structures to enhance their comprehension.
 
 Beyond the story, the app offers immersive experiences with text-to-speech narration, which aids in learning word pronunciation, and story visualization with 3D models. The Gemini API analyzes the generated story content and selects appropriate 3D models from an asset library, creating dynamic, interactive scenes that bring the narrative to life. Some models include embedded animations, providing a captivating visual complement to the text. Through Story Time, the Gemini API helps children explore diverse topics and embark on a journey of imagination and discovery.
+
+## Technology Used
+
+Frontend: Flutter
+Backend: Firebase
+Story generation and exploration: Gemini API
+3d models: Sketchfab (credits doc uploaded for detailed credits)
+Making Video: Animaker
