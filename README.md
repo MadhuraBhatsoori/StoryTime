@@ -7,7 +7,7 @@ Beyond the story, the app offers immersive experiences with text-to-speech narra
 
 ## Technology Used
 
-Frontend: Flutter
+Frontend: Flutter \n
 Backend: Firebase
 Story generation and exploration: Gemini API
 3d models: Sketchfab (credits doc uploaded for detailed credits)
