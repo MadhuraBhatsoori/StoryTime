@@ -14,7 +14,7 @@ Future<bool> moderateForChildren(String topic, String extra) async {
     'politics',
     'religion'
   ];
-
+//check if topic or theme is in list of unsuitable topics for children
   bool isSuitableForChildren(String topic, String extra, List<String> unsuitableTopics) {
     String lowerTopic = topic.toLowerCase();
     String lowerExtra = extra.toLowerCase();
