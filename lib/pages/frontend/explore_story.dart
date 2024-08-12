@@ -55,6 +55,7 @@ class ExploreStoryState extends State<ExploreStory> {
  
      int wordCount = countWords(topic);
 
+    //ensure story is not few lines
      if (wordCount < 100 || wordCount > 1000) {  
       showErrorDialog('Story is too short or too long.');
       return;
@@ -89,6 +90,7 @@ class ExploreStoryState extends State<ExploreStory> {
       );
     } catch (e) {
       String errorStory;
+      //check if topic is suitable for childrem
       if (e.toString().contains('safety reasons')) {
         errorStory =
             'The generated story was blocked due to safety reasons. Please try again with a different topic.';
