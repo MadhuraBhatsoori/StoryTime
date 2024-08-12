@@ -29,7 +29,7 @@ class CreateStoryState extends State<CreateStory> {
   ];
 
   late CreateStoryBackend backend;
-
+  //initiate backend
   @override
   void initState() {
     super.initState();
@@ -64,6 +64,7 @@ class CreateStoryState extends State<CreateStory> {
     String audience = selectedAudience;
     String extra = themeController.text;
 
+    // ensure topic and duration is never null
     if (_sliderValue == 0) {
       showErrorDialog('Duration cannot be 0 to generate a story.');
       return;
@@ -108,6 +109,7 @@ class CreateStoryState extends State<CreateStory> {
       );
     } catch (e) {
       String errorStory;
+      //check if topic is suitable for children
       if (e.toString().contains('safety reasons')) {
         errorStory = 'The generated story was blocked due to safety reasons. Try with a different topic.';
       } else {
