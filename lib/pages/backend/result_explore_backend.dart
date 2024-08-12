@@ -6,6 +6,7 @@ class BackendE {
   late GenerativeModel model;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // use gemini model
   BackendE() {
     final apiKey = dotenv.env['GOOGLE_GENERATIVE_API_KEY']!;
     model = GenerativeModel(
@@ -14,6 +15,7 @@ class BackendE {
     );
   }
 
+  
   Future<String?> checkIfSaved(String story, String userEmail) async {
     try {
       final querySnapshot = await _firestore
@@ -60,11 +62,12 @@ class BackendE {
     }
   }
 
+  //list of available 3d models
   Future<List<String>> getAvailableModels() async {
     // Ideally, this would be fetched dynamically from a service or database
    return [ 'astronaut.glb', 'baby_lion.glb', 'bear.glb', 'boat.glb', 'camel.glb', 'cat.glb', 'cheetah.glb',  'cow.glb', 'deer.glb', 'dolphin.glb', 'dragon.glb',  'elephant.glb', 'fish.glb', 'frog.glb', 'fruit.glb', 'giraffe.glb', 'helicopter.glb', 'hello_kitty.glb', 'horse.glb', 'jerry.glb', 'leopard.glb', 'lion.glb', 'mickey-mouse.glb', 'minion.glb', 'monkey.glb', 'olaf.glb','owl.glb', 'panda.glb', 'penguin.glb', 'picachu.glb', 'pig.glb', 'rabbit.glb', 'robots.glb', 'rocket.glb', 'rose_flower.glb',  'spiderman.glb', 'spongebob.glb', 'tiger.glb', 'tom.glb', 'train.glb', 'turtle.glb', 'unicorn.glb', 'winnie_the_pooh.glb'];
   }
-  
+  //guide gemini to get suitablle 3d models
   Future<List<String>> getSuitableModels(String story, List<String> models) async {
     try {
       final prompt = '''
