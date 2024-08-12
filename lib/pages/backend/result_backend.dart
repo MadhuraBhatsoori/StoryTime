@@ -6,6 +6,8 @@ class Backend {
   late GenerativeModel model;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+
+  //Use gemini API
   Backend() {
     final apiKey = dotenv.env['GOOGLE_GENERATIVE_API_KEY']!;
     model = GenerativeModel(
@@ -13,7 +15,7 @@ class Backend {
       apiKey: apiKey,
     );
   }
-
+// save story based on user email
    Future<String?> checkIfTopicSaved(String topicName, String userEmail) async {
   try {
     final querySnapshot = await _firestore
@@ -53,7 +55,7 @@ class Backend {
       throw Exception('Failed to save story: $e');
     }
   }
-
+//unsave story
   Future<void> unsaveStory(String docId) async {
     try {
       await _firestore.collection('stories').doc(docId).delete();
@@ -61,12 +63,12 @@ class Backend {
       throw Exception('Failed to unsave story: $e');
     }
   }
-
+//list of 3d models available
   Future<List<String>> getAvailableModels() async {
     // Return the list of available models
       return [ 'astronaut.glb', 'baby_lion.glb', 'bear.glb', 'boat.glb', 'camel.glb', 'cat.glb', 'cheetah.glb',  'cow.glb', 'deer.glb', 'dolphin.glb', 'dragon.glb',  'elephant.glb', 'fish.glb', 'frog.glb', 'fruit.glb', 'giraffe.glb', 'helicopter.glb', 'hello_kitty.glb', 'horse.glb', 'jerry.glb', 'leopard.glb', 'lion.glb', 'mickey-mouse.glb', 'minion.glb', 'monkey.glb', 'olaf.glb','owl.glb', 'panda.glb', 'penguin.glb', 'picachu.glb', 'pig.glb', 'rabbit.glb', 'robots.glb', 'rocket.glb', 'rose_flower.glb',  'spiderman.glb', 'spongebob.glb', 'tiger.glb', 'tom.glb', 'train.glb', 'turtle.glb', 'unicorn.glb', 'winnie_the_pooh.glb'];
   }
-  
+  // based on list guide gemini to get suitable models
   Future<List<String>> getSuitableModels(String story, List<String> models) async {
     
     if (models.isEmpty) {
