@@ -38,7 +38,7 @@ class _VisualizeState extends State<Visualize> {
       fetchSuitableModels();
     }
   }
-
+//get suitable models from gemini
   Future<void> fetchSuitableModels() async {
     setState(() {
       isLoading = true;
@@ -77,6 +77,8 @@ class _VisualizeState extends State<Visualize> {
     }
   }
 
+  //load animations embedded in 3d models
+
   Future<void> loadAnimationsForModel(String model) async {
     final controller = controllers[model];
     if (controller == null) return;
@@ -94,7 +96,7 @@ class _VisualizeState extends State<Visualize> {
       _showErrorDialog('Error loading animations: $e');
     }
   }
-
+//show animation
   Future<void> showAnimations(String model) async {
     await loadAnimationsForModel(model);
     final animations = modelAnimations[model] ?? [];
@@ -107,7 +109,7 @@ class _VisualizeState extends State<Visualize> {
       });
     }
   }
-
+//stop animation
   void stopAnimation(String model) {
     final controller = controllers[model];
     if (controller != null) {
@@ -237,6 +239,8 @@ class _VisualizeState extends State<Visualize> {
     );
   }
 }
+
+//control 3d model actions
 
 class _ModelDragTarget extends StatelessWidget {
   final List<String> suitableModels;
