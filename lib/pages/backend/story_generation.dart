@@ -12,10 +12,11 @@ class CreateStoryBackend {
     );
   }
 
+  //every minute duration is considered 140 words
   int calculateTotalWords(double duration) {
     return (duration * 140).toInt();
   }
-
+// divide 10% for introduction, 80% for main content and 10% for conclusion
   Map<String, int> calculateWordDistribution(double duration) {
     final totalWords = calculateTotalWords(duration);
     final introWords = (totalWords * 0.1).toInt();
@@ -34,6 +35,7 @@ class CreateStoryBackend {
     return match != null ? int.parse(match.group(1)!) : 0;
   }
 
+  //customize vocabulary based on age
   String getVocabularyGuidelines(int age) {
     if (age <= 4) {
       return 'Use very simple words and short sentences suitable for a 4-year-old. Avoid complex vocabulary and abstract concepts.';
@@ -56,6 +58,8 @@ class CreateStoryBackend {
     final wordDistribution = calculateWordDistribution(sliderValue);
     final vocabularyGuidelines = getVocabularyGuidelines(age);
 
+
+    // define general tone, formatting, guidelines to create story
     const generalPrompt = '''
       Tone:
       Keep the story fun, engaging, and age-appropriate. Use a gentle, friendly tone. Include clear descriptions of characters and settings. Ensure the story has a positive message.
@@ -69,7 +73,7 @@ class CreateStoryBackend {
       Safety Guidelines:
       The story must avoid any elements of unsuitable topics such as horror, violence, crime, drugs, criminal behavior, mature romantic content, dark magic, intense psychological themes, gothic fiction, strong language, explicit content, politics, or religion. Ensure that none of these elements are present in the story.
     ''';
-
+//story intro guidelines
     final introPrompt = '''
       You are writing a children's story about $topic.
       Start with a fun and engaging introduction:
@@ -78,13 +82,13 @@ class CreateStoryBackend {
       $generalPrompt
       $vocabularyGuidelines
     ''';
-
+//story body guidelines
     final bodyPrompt = '''
       You are writing a children's story about $topic. Write a detailed story with elements of $extra. Ensure the story is engaging and age-appropriate for a child of age $age. Write the main content in approximately ${wordDistribution['mainContentWords']} words. Include vivid descriptions and maintain interest throughout.
       $generalPrompt
       $vocabularyGuidelines
     ''';
-
+//story conclusion guidelines
     final conclusionPrompt = '''
       You are writing a story about $topic for a child of age $age.
       Write a detailed and positive conclusion for the story, aiming for approximately ${wordDistribution['conclusionWords']} words. Make sure the conclusion ties up the story nicely and leaves the reader with a positive feeling.
