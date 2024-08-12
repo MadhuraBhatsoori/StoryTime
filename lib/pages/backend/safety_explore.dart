@@ -14,7 +14,7 @@ Future<bool> moderateForChildren(String topic) async {
     'politics',
     'religion'
   ];
-
+//check if topic is in list of unsuitable topics for children
   bool isSuitableForChildren(String topic,  List<String> unsuitableTopics) {
     String lowerTopic = topic.toLowerCase();
  
@@ -28,6 +28,6 @@ Future<bool> moderateForChildren(String topic) async {
     return true;
   }
 
-  // Call the method and return the result
+
   return isSuitableForChildren(topic,  unsuitableTopics);
 }
