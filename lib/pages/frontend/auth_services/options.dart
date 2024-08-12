@@ -20,6 +20,7 @@ class _OptionsState extends State<Options> {
 
   @override
   Widget build(BuildContext context) {
+  //Toggle between register and login page
     if (_showLoginPage) {
       return LoginPage(showRegisterPage: toggleScreens);
     } else {
