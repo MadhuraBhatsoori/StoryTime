@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CreateStorySummarize {
   late GenerativeModel model;
-
+//use Gemini API
   CreateStorySummarize() {
     final apiKey = dotenv.env['GOOGLE_GENERATIVE_API_KEY']!;
     model = GenerativeModel(
@@ -13,10 +13,12 @@ class CreateStorySummarize {
     );
   }
 
+  //each minute consists of 140 words
   int calculateTotalWords(double duration) {
     return (duration * 140).toInt();
   }
 
+  //divide total words into 10% for introduction, 80% main content and 10% for conclusion
   Map<String, int> calculateWordDistribution(double duration) {
     final totalWords = calculateTotalWords(duration);
     final introWords = (totalWords * 0.1).toInt();
@@ -37,7 +39,7 @@ Future<String> generateStory({
      
     final wordDistribution = calculateWordDistribution(sliderValue);
     
-
+// general prompt for tone, formatting, objective and guidelines to create story
     const generalPrompt = '''
       Tone:
       Keep the story fun, engaging, and age-appropriate. Use a gentle, friendly tone. Include clear descriptions of characters and settings. Ensure the story has a positive message.
@@ -52,6 +54,8 @@ Future<String> generateStory({
       The story must avoid any elements of unsuitable topics such as horror, violence, crime, drugs, criminal behavior, mature romantic content, dark magic, intense psychological themes, gothic fiction, strong language, explicit content, politics, or religion. Ensure that none of these elements are present in the story.
     ''';
 
+  //introduction guideline
+
     final introPrompt = '''
       You are exploring a children's story about $topic.
       Start with a fun and engaging introduction:
@@ -60,13 +64,13 @@ Future<String> generateStory({
       $generalPrompt
     
     ''';
-
+// main content guideline
     final bodyPrompt = '''
       You are exploring a children's story about $topic. Ensure the story is engaging and age-appropriate for a child. Write the main content in approximately ${wordDistribution['mainContentWords']} words. Include vivid descriptions and maintain interest throughout.
       $generalPrompt
      
     ''';
-
+//conclusion guideline
     final conclusionPrompt = '''
       You are exploring a story about $topic for a child.
       Write a detailed and positive conclusion for the story, aiming for approximately ${wordDistribution['conclusionWords']} words. Make sure the conclusion ties up the story nicely and leaves the reader with a positive feeling.
