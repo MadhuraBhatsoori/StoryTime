@@ -44,6 +44,7 @@ class StoryScreenState extends State<StoryScreen> {
     await flutterTts.setPitch(1.0);
   }
 
+  //text to speech feature
   void speak() async {
     try {
       String storyToSpeak = widget.story.substring(currentCharIndex);
@@ -69,7 +70,7 @@ class StoryScreenState extends State<StoryScreen> {
       }
     }
   }
-
+//save story
   void saveStory() async {
     if (isSaved) {
       if (savedStoryId != null) {
@@ -133,9 +134,12 @@ void checkIfSaved() async {
     speak();
   }
 
+  //share story
   void shareStory() {
     Share.share(widget.story, subject: 'Check out this story!');
   }
+
+  //get models from gemini
 
   void visualizeStory() async {
     try {
