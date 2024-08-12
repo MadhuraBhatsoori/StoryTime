@@ -34,6 +34,7 @@ class StoryScreenExploreState extends State<StoryScreenExplore> {
     initializeTts();
   }
 
+  //initialize text to speech 
   void initializeTts() async {
     await flutterTts.setLanguage("en-US");
     await flutterTts.setPitch(1.0);
@@ -68,10 +69,12 @@ class StoryScreenExploreState extends State<StoryScreenExplore> {
   void textToSpeech() {
     speak();
   }
-
+ //share story 
   void shareStory() {
     Share.share(widget.story, subject: 'Check out this story!');
   }
+
+  //get suitable models from Gemini 
 
   void visualizeStory() async {
     try {
