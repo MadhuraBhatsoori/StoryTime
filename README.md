@@ -9,7 +9,7 @@ Beyond the story, the app offers immersive experiences with text-to-speech narra
 
 Frontend: Flutter 
 
-Backend: Firebase
+Backend: Firebase (Authentication, Firestore, Hosting)
 
 Story generation and exploration: Gemini API
 
