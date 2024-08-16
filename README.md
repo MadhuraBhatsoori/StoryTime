@@ -16,3 +16,8 @@ Story generation and exploration: Gemini API
 3d models: Sketchfab (credits doc uploaded for detailed credits)
 
 Making Video: Animaker
+
+## Youtube Video Link:
+
+https://www.youtube.com/watch?v=7NXFKe9RTHY
+
